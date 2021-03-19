@@ -1,22 +1,33 @@
 package org.cnam.nfp121.question_swing_temp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
 
   private String question;
-  private List<QuestionCategory> categories;
+  private Integer id;
+  private ArrayList<QuestionCategory> categories;
 
-  public Question(String question, List<QuestionCategory> categories) {
+  public Question(Integer id, String question, ArrayList<QuestionCategory> categories) {
+    this.setId(id);
     this.setQuestion(question);
     this.setCategories(categories);
   }
 
-  public List<QuestionCategory> getCategories() {
+  public Integer getId() {
+    return id;
+  }
+
+  private void setId(Integer id) {
+    this.id = id;
+  }
+
+  public ArrayList<QuestionCategory> getCategories() {
     return categories;
   }
 
-  private void setCategories(List<QuestionCategory> categories) {
+  private void setCategories(ArrayList<QuestionCategory> categories) {
     this.categories = categories;
   }
 

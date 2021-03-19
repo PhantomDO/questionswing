@@ -2,11 +2,13 @@ package org.cnam.nfp121.question_swing_temp;
 
 import java.util.ArrayList;
 
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.Container;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class QuestionWindow extends JFrame{
 
@@ -17,20 +19,26 @@ public class QuestionWindow extends JFrame{
 
   public QuestionWindow(){
     Container container = this.getContentPane();
-    container.setLayout(new FlowLayout());
+    container.setLayout(new GridBagLayout());
 
-    CreateQuestionPanel(container);
-    CreateReponsePanel(container);
+    container.add(CreateQuestionPanel(container));
+    container.add(CreateReponsePanel(container));
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setSize(400, 500);
   }
 
-  public void CreateQuestionPanel(Container container){
+  public JPanel CreateQuestionPanel(Container container){
+    ArrayList<QuestionCategory> categories = new ArrayList<QuestionCategory>();
+    categories.add(new QuestionCategory("Categorie0", 0));
+    categories.add(new QuestionCategory("Categorie1", 1));
 
+    Question question = new Question(0, "Question?", categories);
+    JTextField resource = new JTextField("url");
+    return new QuestionPanel<JTextField>(container.getLayout(), question, resource);
   }
 
-  public void CreateReponsePanel(Container container){
+  public JPanel CreateReponsePanel(Container container){
 		ArrayList<Answer> answers = Answer.getListFromRestAPI(null);
 
 		ArrayList<JButton> answerComponents = new ArrayList<JButton>();
@@ -38,9 +46,7 @@ public class QuestionWindow extends JFrame{
 			answerComponents.add(new JButton(answer.getAnswer()));
 		}
 
-		ReponsePanel<JButton> rPanelReponse =
-      new ReponsePanel<JButton>(container.getLayout(), answerComponents);
-    container.add(rPanelReponse);
+		return new ButtonReponsePanel(container.getLayout(), answerComponents);
   }
 
 }

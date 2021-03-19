@@ -1,16 +1,13 @@
 package org.cnam.nfp121.question_swing_temp;
 
 import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
-import javax.accessibility.Accessible;
-import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
-public class QuestionPanel<T extends JComponent> extends JPanel implements Action, Accessible {
+public class QuestionPanel<T extends JComponent> extends JPanel {
 
   /**
    *
@@ -18,14 +15,14 @@ public class QuestionPanel<T extends JComponent> extends JPanel implements Actio
   private static final long serialVersionUID = 1L;
 
   private Question question;
-  private T resource;
+  private ArrayList<T> resources;
 
-  public T getResource() {
-    return resource;
+  public ArrayList<T> getResource() {
+    return resources;
   }
 
-  private void setResource(T resource) {
-    this.resource = resource;
+  private void setResources(ArrayList<T> resource) {
+    this.resources = resource;
   }
 
   public Question getQuestion() {
@@ -36,28 +33,29 @@ public class QuestionPanel<T extends JComponent> extends JPanel implements Actio
     this.question = question;
   }
 
-  public void actionPerformed(ActionEvent e) {
-    // TODO Auto-generated method stub
-
-  }
-
-  public Object getValue(String key) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  public void putValue(String key, Object value) {
-    // TODO Auto-generated method stub
-
-  }
-
   public QuestionPanel(LayoutManager layout, Question question, T resource) {
     super(layout);
 
     this.setQuestion(question);
     this.add(new JTextField(question.getQuestion()));
-    this.setResource(resource);
+
+    resources = new ArrayList<T>();
+    resources.add(resource);
+    this.setResources(resources);
     this.add(resource);
+  }
+
+  public QuestionPanel(LayoutManager layout, Question question, ArrayList<T> resources) {
+    super(layout);
+
+    this.setQuestion(question);
+    this.add(new JTextField(question.getQuestion()));
+
+    this.setResources(resources);
+
+    for (T t : resources) {
+      this.add(t);
+    }
   }
 
 }
