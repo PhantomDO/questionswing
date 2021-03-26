@@ -1,10 +1,9 @@
 package org.cnam.nfp121.question_swing_temp;
 
-import java.awt.LayoutManager;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ReponsePanel extends JPanel {
@@ -14,33 +13,36 @@ public class ReponsePanel extends JPanel {
    */
   private static final long serialVersionUID = 1L;
 
-  private ArrayList<JComponent> answerComponents;
 
+  protected JPanel controlAnswerPanel;
+  public JPanel getControlAnswerPanel() {
+    return controlAnswerPanel;
+  }
+
+  protected ArrayList<JComponent> answerComponents;
   public ArrayList<JComponent> getAnswerComponents(){
     return answerComponents;
   }
 
-  private void setAnswerComponents(ArrayList<JComponent> answerComponents) {
-    this.answerComponents = answerComponents;
-    for (JComponent c : this.answerComponents) {
-      this.add(c);
-    }
-  }
-
-  public void addComponent(JComponent c){
+  public void addAnswer(JComponent c){
     this.answerComponents.add(c);
-    this.add(c);
+    this.controlAnswerPanel.add(c);
   }
 
-  public void addComponents(ArrayList<JComponent> cList){
+  public void addAnswers(ArrayList<JComponent> cList){
     for (JComponent c : cList) {
-      this.addComponent(c);
+      this.addAnswer(c);
     }
   }
 
-  public ReponsePanel(LayoutManager layout, ArrayList<JComponent> answerComponents) {
-    super(layout);
-    this.setAnswerComponents(answerComponents);
+  public ReponsePanel(ArrayList<JComponent> answerComponents) {
+    this.setLayout(new GridBagLayout());
+
+    this.controlAnswerPanel = new JPanel();
+    this.answerComponents = new ArrayList<JComponent>();
+    this.addAnswers(answerComponents);
+
+    this.add(controlAnswerPanel);
   }
 
 }

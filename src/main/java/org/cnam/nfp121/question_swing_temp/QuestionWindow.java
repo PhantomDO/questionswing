@@ -3,12 +3,14 @@ package org.cnam.nfp121.question_swing_temp;
 import java.util.ArrayList;
 
 import java.awt.GridBagLayout;
+import java.awt.CardLayout;
 import java.awt.Container;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class QuestionWindow extends JFrame{
@@ -18,15 +20,25 @@ public class QuestionWindow extends JFrame{
    */
   private static final long serialVersionUID = 1L;
 
+  private JPanel reponsePanel;
+  public JPanel getReponsePanel() {
+    return reponsePanel;
+  }
+
+  private JPanel questionPanel;
+  public JPanel getQuestionPanel() {
+    return questionPanel;
+  }
+
   public QuestionWindow(){
     Container container = this.getContentPane();
     container.setLayout(new GridBagLayout());
 
-    container.add(CreateQuestionPanel(container));
-    container.add(CreateReponsePanel(container));
+    questionPanel = CreateQuestionPanel(container);
+    reponsePanel = CreateReponsePanel(container);
 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setSize(400, 500);
+    container.add(questionPanel);
+    container.add(reponsePanel);
   }
 
   public JPanel CreateQuestionPanel(Container container){
@@ -35,8 +47,8 @@ public class QuestionWindow extends JFrame{
     categories.add(new QuestionCategory("Categorie1", 1));
 
     Question question = new Question(0, "Question?", categories);
-    JTextField resource = new JTextField("url");
-    return new QuestionPanel(container.getLayout(), question, resource);
+    JTextArea indice = new JTextArea("Ceci est un indice");
+    return new QuestionPanel(question, indice);
   }
 
   public JPanel CreateReponsePanel(Container container){
@@ -47,7 +59,7 @@ public class QuestionWindow extends JFrame{
 			answerComponents.add(new JButton(answer.getAnswer()));
 		}
 
-		return new ButtonReponsePanel(container.getLayout(), answerComponents);
+		return new ButtonReponsePanel(new JButton("Validate"), answerComponents);
   }
 
 }

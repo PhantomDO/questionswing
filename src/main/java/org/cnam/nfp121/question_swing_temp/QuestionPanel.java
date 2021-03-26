@@ -1,11 +1,11 @@
 package org.cnam.nfp121.question_swing_temp;
 
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 
+import java.awt.BorderLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class QuestionPanel extends JPanel {
 
@@ -20,52 +20,63 @@ public class QuestionPanel extends JPanel {
     return question;
   }
 
-  private void setQuestion(Question question) {
-    this.question = question;
+  private JPanel controlQuestionPanel;
+
+  public JPanel getControlQuestionPanel() {
+    return controlQuestionPanel;
   }
 
-  private ArrayList<JComponent> resourceComponents;
+  private JPanel indicePanel;
+
+  public JPanel getIndicePanel() {
+    return indicePanel;
+  }
+
+  private ArrayList<JComponent> indiceComponents;
 
   public ArrayList<JComponent> getResourceComponents() {
-    return resourceComponents;
+    return indiceComponents;
   }
 
-  private void setResourceComponents(ArrayList<JComponent> resourceComponents) {
-    this.resourceComponents = resourceComponents;
-    for (JComponent c : this.resourceComponents) {
-      this.add(c);
-    }
+  public void addIndice(JComponent c){
+    this.indiceComponents.add(c);
+    this.indicePanel.add(c);
   }
 
-  private void setResourceComponents(JComponent resourceComponent) {
-    this.resourceComponents = new ArrayList<JComponent>();
-    this.addComponent(resourceComponent);
-  }
-
-  public void addComponent(JComponent c){
-    this.resourceComponents.add(c);
-    this.add(c);
-  }
-
-  public void addComponents(ArrayList<JComponent> cList){
+  public void addIndices(ArrayList<JComponent> cList){
     for (JComponent c : cList) {
-      this.addComponent(c);
+      this.addIndice(c);
     }
   }
 
-  public QuestionPanel(LayoutManager layout, Question question, JComponent resource) {
-    super(layout);
+  public QuestionPanel(Question question, JComponent indice) {
+    this.setLayout(new BorderLayout());
 
-    this.setQuestion(question);
-    this.add(new JTextField(question.getQuestion()));
-    this.setResourceComponents(resource);
+    this.question = question;
+    this.controlQuestionPanel = new JPanel();
+    this.controlQuestionPanel.add(new JTextArea(question.getQuestion()));
+
+    this.indiceComponents = new ArrayList<JComponent>();
+    this.indicePanel = new JPanel();
+    this.addIndice(indice);
+
+    this.add(controlQuestionPanel);
+    this.controlQuestionPanel.add(indicePanel);
   }
 
-  public QuestionPanel(LayoutManager layout, Question question, ArrayList<JComponent> resources) {
-    super(layout);
-    this.setQuestion(question);
-    this.add(new JTextField(question.getQuestion()));
-    this.setResourceComponents(resources);
+  public QuestionPanel(Question question, ArrayList<JComponent> indices) {
+    this.setLayout(new BorderLayout());
+
+    this.question = question;
+    this.controlQuestionPanel = new JPanel();
+    this.controlQuestionPanel.add(new JTextArea(question.getQuestion()));
+
+    this.indiceComponents = new ArrayList<JComponent>();
+    this.indicePanel = new JPanel();
+    this.addIndices(indices);
+
+    this.add(controlQuestionPanel);
+    this.controlQuestionPanel.add(indicePanel);
   }
 
 }

@@ -1,7 +1,8 @@
 package org.cnam.nfp121.question_swing_temp;
 
-import java.awt.LayoutManager;
+import javax.swing.JButton;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 import javax.swing.JComponent;
 
@@ -12,8 +13,17 @@ public class ButtonReponsePanel extends ReponsePanel {
    */
   private static final long serialVersionUID = 2111034126848871799L;
 
-  public ButtonReponsePanel(LayoutManager layout, ArrayList<JComponent> answerComponents) {
-    super(layout, answerComponents);
+  private JPanel buttonValidatePanel;
+  public JPanel getButtonValidatePanel() {
+    return buttonValidatePanel;
+  }
+
+  public ButtonReponsePanel(JButton validate, ArrayList<JComponent> answerComponents) {
+    super(answerComponents);
+
+    this.buttonValidatePanel = new JPanel();
+    this.buttonValidatePanel.add(validate);
+    this.controlAnswerPanel.add(buttonValidatePanel);
   }
 
 }
