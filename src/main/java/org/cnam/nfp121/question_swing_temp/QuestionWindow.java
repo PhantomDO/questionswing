@@ -3,6 +3,8 @@ package org.cnam.nfp121.question_swing_temp;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -36,8 +38,24 @@ public class QuestionWindow extends JFrame{
     questionPanel.getIndicePanel().setLayout(new GridBagLayout());
 
     reponsePanel = CreateReponsePanel(container);
+    RowsColumns answerRowsColumns = reponsePanel.getAnswerRowsColumns();
     reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
-    ((ButtonReponsePanel)reponsePanel).getButtonValidatePanel().setLayout(new BorderLayout());
+    /// Set layout params
+    //answerRowsColumns.getRows() + 1, answerRowsColumns.getColumns(), 2, 2)
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+
+    ArrayList<JComponent> list = reponsePanel.getAnswerComponents();
+    for (int rows = 0; rows < list.size(); rows++) {
+      gbc.gridx = (rows % 2);
+      gbc.gridy = (rows / 2) + 1;
+      reponsePanel.getControlAnswerPanel().add(list.get(rows), gbc);
+    }
+
+    ((ButtonReponsePanel)reponsePanel).getButtonValidatePanel().setLayout(new GridBagLayout());
+    gbc.gridy = list.size();
+    gbc.gridx = 0;
+    reponsePanel.getControlAnswerPanel().add(((ButtonReponsePanel)reponsePanel).getButtonValidatePanel(), gbc);
 
     container.add(questionPanel);
     container.add(reponsePanel);

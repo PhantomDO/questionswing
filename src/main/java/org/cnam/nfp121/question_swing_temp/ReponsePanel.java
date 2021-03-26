@@ -1,6 +1,7 @@
 package org.cnam.nfp121.question_swing_temp;
 
 import java.awt.GridBagLayout;
+import java.sql.Struct;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -14,6 +15,7 @@ public class ReponsePanel extends JPanel {
   private static final long serialVersionUID = 1L;
 
 
+
   protected JPanel controlAnswerPanel;
   public JPanel getControlAnswerPanel() {
     return controlAnswerPanel;
@@ -22,6 +24,10 @@ public class ReponsePanel extends JPanel {
   protected ArrayList<JComponent> answerComponents;
   public ArrayList<JComponent> getAnswerComponents(){
     return answerComponents;
+  }
+
+  public RowsColumns getAnswerRowsColumns(){
+    return new RowsColumns((answerComponents.size() / 2) + (answerComponents.size() % 2), 2);
   }
 
   public void addAnswer(JComponent c){
