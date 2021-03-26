@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class QuestionPanel<T extends JComponent> extends JPanel {
+public class QuestionPanel extends JPanel {
 
   /**
    *
@@ -15,13 +15,13 @@ public class QuestionPanel<T extends JComponent> extends JPanel {
   private static final long serialVersionUID = 1L;
 
   private Question question;
-  private ArrayList<T> resources;
+  private ArrayList<JComponent> resources;
 
-  public ArrayList<T> getResource() {
+  public ArrayList<JComponent> getResource() {
     return resources;
   }
 
-  private void setResources(ArrayList<T> resource) {
+  private void setResources(ArrayList<JComponent> resource) {
     this.resources = resource;
   }
 
@@ -33,19 +33,19 @@ public class QuestionPanel<T extends JComponent> extends JPanel {
     this.question = question;
   }
 
-  public QuestionPanel(LayoutManager layout, Question question, T resource) {
+  public QuestionPanel(LayoutManager layout, Question question, JComponent resource) {
     super(layout);
 
     this.setQuestion(question);
     this.add(new JTextField(question.getQuestion()));
 
-    resources = new ArrayList<T>();
+    resources = new ArrayList<JComponent>();
     resources.add(resource);
     this.setResources(resources);
     this.add(resource);
   }
 
-  public QuestionPanel(LayoutManager layout, Question question, ArrayList<T> resources) {
+  public QuestionPanel(LayoutManager layout, Question question, ArrayList<JComponent> resources) {
     super(layout);
 
     this.setQuestion(question);
@@ -53,7 +53,7 @@ public class QuestionPanel<T extends JComponent> extends JPanel {
 
     this.setResources(resources);
 
-    for (T t : resources) {
+    for (JComponent t : resources) {
       this.add(t);
     }
   }

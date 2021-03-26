@@ -1,7 +1,6 @@
 package org.cnam.nfp121.question_swing_temp;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Answer {
 

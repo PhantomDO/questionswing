@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Container;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,13 +36,13 @@ public class QuestionWindow extends JFrame{
 
     Question question = new Question(0, "Question?", categories);
     JTextField resource = new JTextField("url");
-    return new QuestionPanel<JTextField>(container.getLayout(), question, resource);
+    return new QuestionPanel(container.getLayout(), question, resource);
   }
 
   public JPanel CreateReponsePanel(Container container){
 		ArrayList<Answer> answers = Answer.getListFromRestAPI(null);
 
-		ArrayList<JButton> answerComponents = new ArrayList<JButton>();
+		ArrayList<JComponent> answerComponents = new ArrayList<JComponent>();
 		for (Answer answer : answers) {
 			answerComponents.add(new JButton(answer.getAnswer()));
 		}
