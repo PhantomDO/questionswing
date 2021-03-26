@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import java.awt.GridBagLayout;
 import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.awt.Container;
 
 import javax.swing.JButton;
@@ -13,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import swing2swt.layout.GridLayout;
+
 public class QuestionWindow extends JFrame{
 
   /**
@@ -20,13 +24,13 @@ public class QuestionWindow extends JFrame{
    */
   private static final long serialVersionUID = 1L;
 
-  private JPanel reponsePanel;
-  public JPanel getReponsePanel() {
+  private ReponsePanel reponsePanel;
+  public ReponsePanel getReponsePanel() {
     return reponsePanel;
   }
 
-  private JPanel questionPanel;
-  public JPanel getQuestionPanel() {
+  private QuestionPanel questionPanel;
+  public QuestionPanel getQuestionPanel() {
     return questionPanel;
   }
 
@@ -35,13 +39,18 @@ public class QuestionWindow extends JFrame{
     container.setLayout(new GridBagLayout());
 
     questionPanel = CreateQuestionPanel(container);
+    questionPanel.getControlQuestionPanel().setLayout(new GridBagLayout());
+    questionPanel.getIndicePanel().setLayout(new GridBagLayout());
+
     reponsePanel = CreateReponsePanel(container);
+    reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
+    ((ButtonReponsePanel)reponsePanel).getButtonValidatePanel().setLayout(new BorderLayout());
 
     container.add(questionPanel);
     container.add(reponsePanel);
   }
 
-  public JPanel CreateQuestionPanel(Container container){
+  public QuestionPanel CreateQuestionPanel(Container container){
     ArrayList<QuestionCategory> categories = new ArrayList<QuestionCategory>();
     categories.add(new QuestionCategory("Categorie0", 0));
     categories.add(new QuestionCategory("Categorie1", 1));
@@ -51,7 +60,7 @@ public class QuestionWindow extends JFrame{
     return new QuestionPanel(question, indice);
   }
 
-  public JPanel CreateReponsePanel(Container container){
+  public ReponsePanel CreateReponsePanel(Container container){
 		ArrayList<Answer> answers = Answer.getListFromRestAPI(null);
 
 		ArrayList<JComponent> answerComponents = new ArrayList<JComponent>();
