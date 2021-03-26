@@ -1,12 +1,9 @@
 package org.cnam.nfp121.question_swing_temp;
 
-import java.util.ArrayList;
-
-import java.awt.GridBagLayout;
-import java.awt.CardLayout;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
