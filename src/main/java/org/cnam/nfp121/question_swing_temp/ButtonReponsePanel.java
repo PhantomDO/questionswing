@@ -18,8 +18,8 @@ public class ButtonReponsePanel extends ReponsePanel {
     return buttonValidatePanel;
   }
 
-  public ButtonReponsePanel(JButton validate, ArrayList<JComponent> answerComponents) {
-    super(answerComponents);
+  public ButtonReponsePanel(JButton validate) {
+    super();
 
     this.buttonValidatePanel = new JPanel();
     this.buttonValidatePanel.add(validate);

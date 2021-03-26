@@ -37,13 +37,10 @@ public class ReponsePanel extends JPanel {
     }
   }
 
-  public ReponsePanel(ArrayList<JComponent> answerComponents) {
+  public ReponsePanel() {
     this.setLayout(new GridBagLayout());
-
     this.controlAnswerPanel = new JPanel();
     this.answerComponents = new ArrayList<JComponent>();
-    this.addAnswers(answerComponents);
-
     this.add(controlAnswerPanel);
   }
 

@@ -49,7 +49,7 @@ public class QuestionPanel extends JPanel {
     }
   }
 
-  public QuestionPanel(Question question, JComponent indice) {
+  public QuestionPanel(Question question) {
     this.setLayout(new BorderLayout());
 
     this.question = question;
@@ -58,22 +58,6 @@ public class QuestionPanel extends JPanel {
 
     this.indiceComponents = new ArrayList<JComponent>();
     this.indicePanel = new JPanel();
-    this.addIndice(indice);
-
-    this.add(controlQuestionPanel);
-    this.controlQuestionPanel.add(indicePanel);
-  }
-
-  public QuestionPanel(Question question, ArrayList<JComponent> indices) {
-    this.setLayout(new BorderLayout());
-
-    this.question = question;
-    this.controlQuestionPanel = new JPanel();
-    this.controlQuestionPanel.add(new JTextArea(question.getQuestion()));
-
-    this.indiceComponents = new ArrayList<JComponent>();
-    this.indicePanel = new JPanel();
-    this.addIndices(indices);
 
     this.add(controlQuestionPanel);
     this.controlQuestionPanel.add(indicePanel);
