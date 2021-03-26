@@ -38,7 +38,6 @@ public class QuestionWindow extends JFrame{
     questionPanel.getIndicePanel().setLayout(new GridBagLayout());
 
     reponsePanel = CreateReponsePanel(container);
-    RowsColumns answerRowsColumns = reponsePanel.getAnswerRowsColumns();
     reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
     /// Set layout params
     //answerRowsColumns.getRows() + 1, answerRowsColumns.getColumns(), 2, 2)

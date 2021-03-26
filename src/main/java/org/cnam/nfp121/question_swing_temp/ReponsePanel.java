@@ -26,10 +26,6 @@ public class ReponsePanel extends JPanel {
     return answerComponents;
   }
 
-  public RowsColumns getAnswerRowsColumns(){
-    return new RowsColumns((answerComponents.size() / 2) + (answerComponents.size() % 2), 2);
-  }
-
   public void addAnswer(JComponent c){
     this.answerComponents.add(c);
     this.controlAnswerPanel.add(c);
