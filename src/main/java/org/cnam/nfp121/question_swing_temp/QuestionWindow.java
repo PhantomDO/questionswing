@@ -11,11 +11,7 @@ import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import swing2swt.layout.GridLayout;
 
 public class QuestionWindow extends JFrame{
 
