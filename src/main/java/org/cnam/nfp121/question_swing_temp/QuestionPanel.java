@@ -15,15 +15,6 @@ public class QuestionPanel extends JPanel {
   private static final long serialVersionUID = 1L;
 
   private Question question;
-  private ArrayList<JComponent> resources;
-
-  public ArrayList<JComponent> getResource() {
-    return resources;
-  }
-
-  private void setResources(ArrayList<JComponent> resource) {
-    this.resources = resource;
-  }
 
   public Question getQuestion() {
     return question;
@@ -33,29 +24,48 @@ public class QuestionPanel extends JPanel {
     this.question = question;
   }
 
+  private ArrayList<JComponent> resourceComponents;
+
+  public ArrayList<JComponent> getResourceComponents() {
+    return resourceComponents;
+  }
+
+  private void setResourceComponents(ArrayList<JComponent> resourceComponents) {
+    this.resourceComponents = resourceComponents;
+    for (JComponent c : this.resourceComponents) {
+      this.add(c);
+    }
+  }
+
+  private void setResourceComponents(JComponent resourceComponent) {
+    this.resourceComponents = new ArrayList<JComponent>();
+    this.addComponent(resourceComponent);
+  }
+
+  public void addComponent(JComponent c){
+    this.resourceComponents.add(c);
+    this.add(c);
+  }
+
+  public void addComponents(ArrayList<JComponent> cList){
+    for (JComponent c : cList) {
+      this.addComponent(c);
+    }
+  }
+
   public QuestionPanel(LayoutManager layout, Question question, JComponent resource) {
     super(layout);
 
     this.setQuestion(question);
     this.add(new JTextField(question.getQuestion()));
-
-    resources = new ArrayList<JComponent>();
-    resources.add(resource);
-    this.setResources(resources);
-    this.add(resource);
+    this.setResourceComponents(resource);
   }
 
   public QuestionPanel(LayoutManager layout, Question question, ArrayList<JComponent> resources) {
     super(layout);
-
     this.setQuestion(question);
     this.add(new JTextField(question.getQuestion()));
-
-    this.setResources(resources);
-
-    for (JComponent t : resources) {
-      this.add(t);
-    }
+    this.setResourceComponents(resources);
   }
 
 }

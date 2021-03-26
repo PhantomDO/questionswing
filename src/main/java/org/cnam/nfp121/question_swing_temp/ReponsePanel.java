@@ -20,22 +20,27 @@ public class ReponsePanel extends JPanel {
     return answerComponents;
   }
 
-  public void addToFrame(JFrame container){
-    for (JComponent t : answerComponents) {
-      container.add(t);
+  private void setAnswerComponents(ArrayList<JComponent> answerComponents) {
+    this.answerComponents = answerComponents;
+    for (JComponent c : this.answerComponents) {
+      this.add(c);
     }
   }
 
-  public void addRange(ArrayList<JComponent> c){
-		this.answerComponents.addAll(c);
+  public void addComponent(JComponent c){
+    this.answerComponents.add(c);
+    this.add(c);
+  }
+
+  public void addComponents(ArrayList<JComponent> cList){
+    for (JComponent c : cList) {
+      this.addComponent(c);
+    }
   }
 
   public ReponsePanel(LayoutManager layout, ArrayList<JComponent> answerComponents) {
     super(layout);
-    this.answerComponents = answerComponents;
-    for (JComponent t : answerComponents) {
-      this.add(t);
-    }
+    this.setAnswerComponents(answerComponents);
   }
 
 }
