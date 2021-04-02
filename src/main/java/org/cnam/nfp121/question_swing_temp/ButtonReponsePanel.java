@@ -1,7 +1,10 @@
 package org.cnam.nfp121.question_swing_temp;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 public class ButtonReponsePanel extends ReponsePanel {
 
@@ -19,8 +22,9 @@ public class ButtonReponsePanel extends ReponsePanel {
     super();
 
     this.buttonValidatePanel = new JPanel();
+    this.buttonValidatePanel.setBackground(Color.YELLOW);
     this.buttonValidatePanel.add(validate);
-    this.controlAnswerPanel.add(buttonValidatePanel);
+    this.add(buttonValidatePanel, BorderLayout.SOUTH);
   }
 
 }

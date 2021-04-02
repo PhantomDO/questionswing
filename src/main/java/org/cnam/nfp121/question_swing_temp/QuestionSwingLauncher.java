@@ -7,7 +7,7 @@ public class QuestionSwingLauncher {
 	public static void main(String[] args) {
 		QuestionWindow questionWindow = new QuestionWindow();
 		questionWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		questionWindow.setSize(1024, 1024);
+		questionWindow.setSize(1280, 720);
 		questionWindow.setVisible(true);
 	}
 

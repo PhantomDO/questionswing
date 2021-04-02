@@ -3,6 +3,9 @@ package org.cnam.nfp121.question_swing_temp;
 import java.util.ArrayList;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -51,6 +54,8 @@ public class QuestionPanel extends JPanel {
 
   public QuestionPanel(Question question) {
     this.setLayout(new BorderLayout());
+    this.setBackground(Color.GRAY);
+    this.add(Box.createVerticalGlue());
 
     this.question = question;
     this.controlQuestionPanel = new JPanel();
@@ -59,8 +64,8 @@ public class QuestionPanel extends JPanel {
     this.indiceComponents = new ArrayList<JComponent>();
     this.indicePanel = new JPanel();
 
-    this.add(controlQuestionPanel);
-    this.controlQuestionPanel.add(indicePanel);
+    this.add(indicePanel, BorderLayout.CENTER);
+    this.add(controlQuestionPanel, BorderLayout.SOUTH);
   }
 
 }

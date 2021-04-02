@@ -31,18 +31,21 @@ public class QuestionWindow extends JFrame{
 
   public QuestionWindow(){
     Container container = this.getContentPane();
-    container.setLayout(new GridBagLayout());
+    container.setLayout(new BorderLayout());
 
     questionPanel = CreateQuestionPanel(container);
-    questionPanel.getControlQuestionPanel().setLayout(new GridBagLayout());
-    questionPanel.getIndicePanel().setLayout(new GridBagLayout());
+    container.add(questionPanel, BorderLayout.CENTER);
 
     reponsePanel = CreateButtonReponsePanel(container);
+    container.add(reponsePanel, BorderLayout.SOUTH);
+
     /// Set layout params
     {
       reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
       GridBagConstraints gbc = new GridBagConstraints();
       gbc.fill = GridBagConstraints.HORIZONTAL;
+      gbc.weightx = 2;
+      gbc.weighty = 2;
 
       ArrayList<JComponent> list = reponsePanel.getAnswerComponents();
       for (int rows = 0; rows < list.size(); rows++) {
@@ -50,15 +53,7 @@ public class QuestionWindow extends JFrame{
         gbc.gridy = (rows / 2) + 1;
         reponsePanel.getControlAnswerPanel().add(list.get(rows), gbc);
       }
-
-      reponsePanel.getButtonValidatePanel().setLayout(new GridBagLayout());
-      gbc.gridy = list.size();
-      gbc.gridx = 0;
-      reponsePanel.getControlAnswerPanel().add(reponsePanel.getButtonValidatePanel(), gbc);
     }
-
-    container.add(questionPanel);
-    container.add(reponsePanel);
   }
 
   public QuestionPanel CreateQuestionPanel(Container container){
@@ -78,7 +73,9 @@ public class QuestionWindow extends JFrame{
 
 		ArrayList<JComponent> answerComponents = new ArrayList<JComponent>();
 		for (Answer answer : answers) {
-			answerComponents.add(new JButton(answer.getAnswer()));
+      JButton btn = new JButton(answer.getAnswer());
+      btn.setSize(100, 200);
+			answerComponents.add(btn);
 		}
 
     ButtonReponsePanel buttonReponsePanel = new ButtonReponsePanel(new JButton("Validate"));

@@ -1,10 +1,13 @@
 package org.cnam.nfp121.question_swing_temp;
 
-import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.Box;
+import java.awt.Color;
 
 public class ReponsePanel extends JPanel {
 
@@ -37,10 +40,18 @@ public class ReponsePanel extends JPanel {
   }
 
   public ReponsePanel() {
-    this.setLayout(new GridBagLayout());
+    this.setLayout(new BorderLayout());
+    this.add(Box.createGlue(), BorderLayout.NORTH);
+    this.add(Box.createGlue(), BorderLayout.EAST);
+    this.add(Box.createGlue(), BorderLayout.WEST);
+
+
     this.controlAnswerPanel = new JPanel();
+    this.controlAnswerPanel.setBackground(Color.YELLOW);
     this.answerComponents = new ArrayList<JComponent>();
-    this.add(controlAnswerPanel);
+
+    this.add(controlAnswerPanel, BorderLayout.CENTER);
+
   }
 
 }
