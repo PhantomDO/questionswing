@@ -1,7 +1,6 @@
 package org.cnam.nfp121.question_swing_temp;
 
 import java.awt.GridBagLayout;
-import java.sql.Struct;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;

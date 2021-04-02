@@ -19,8 +19,8 @@ public class QuestionWindow extends JFrame{
    */
   private static final long serialVersionUID = 1L;
 
-  private ReponsePanel reponsePanel;
-  public ReponsePanel getReponsePanel() {
+  private ButtonReponsePanel reponsePanel;
+  public ButtonReponsePanel getReponsePanel() {
     return reponsePanel;
   }
 
@@ -37,7 +37,7 @@ public class QuestionWindow extends JFrame{
     questionPanel.getControlQuestionPanel().setLayout(new GridBagLayout());
     questionPanel.getIndicePanel().setLayout(new GridBagLayout());
 
-    reponsePanel = CreateReponsePanel(container);
+    reponsePanel = CreateButtonReponsePanel(container);
     /// Set layout params
     {
       reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
@@ -51,10 +51,10 @@ public class QuestionWindow extends JFrame{
         reponsePanel.getControlAnswerPanel().add(list.get(rows), gbc);
       }
 
-      ((ButtonReponsePanel)reponsePanel).getButtonValidatePanel().setLayout(new GridBagLayout());
+      reponsePanel.getButtonValidatePanel().setLayout(new GridBagLayout());
       gbc.gridy = list.size();
       gbc.gridx = 0;
-      reponsePanel.getControlAnswerPanel().add(((ButtonReponsePanel)reponsePanel).getButtonValidatePanel(), gbc);
+      reponsePanel.getControlAnswerPanel().add(reponsePanel.getButtonValidatePanel(), gbc);
     }
 
     container.add(questionPanel);
@@ -73,7 +73,7 @@ public class QuestionWindow extends JFrame{
     return questionPanel;
   }
 
-  public ReponsePanel CreateReponsePanel(Container container){
+  public ButtonReponsePanel CreateButtonReponsePanel(Container container){
 		ArrayList<Answer> answers = Answer.getListFromRestAPI(null);
 
 		ArrayList<JComponent> answerComponents = new ArrayList<JComponent>();

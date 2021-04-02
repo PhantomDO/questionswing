@@ -1,10 +1,7 @@
 package org.cnam.nfp121.question_swing_temp;
 
 import javax.swing.JButton;
-import java.util.ArrayList;
 import javax.swing.JPanel;
-
-import javax.swing.JComponent;
 
 public class ButtonReponsePanel extends ReponsePanel {
 
