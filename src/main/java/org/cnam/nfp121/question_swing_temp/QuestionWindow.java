@@ -37,14 +37,18 @@ public class QuestionWindow extends JFrame{
     Container container = this.getContentPane();
     container.setLayout(new BorderLayout());
 
+    ExitAction exitAction = new ExitAction(this);
+    exitAction.setEnabled(true);
+    exitAction.setText("Quit action");
+
     questionPanel = CreateQuestionPanel(container);
     container.add(questionPanel, BorderLayout.CENTER);
 
     reponsePanel = CreateButtonReponsePanel(container);
     container.add(reponsePanel, BorderLayout.SOUTH);
 
-    quit = new JButton("QUIT");
-    quit.addActionListener(new QuitListener());
+    quit = new JButton(exitAction);
+    quit.setText("Quit");
     container.add(quit, BorderLayout.WEST);
 
     menuBar = new JMenuBar();
@@ -53,9 +57,9 @@ public class QuestionWindow extends JFrame{
     menu.getAccessibleContext().setAccessibleDescription("File menu app");
     menuBar.add(menu);
 
-    menuItem = new JMenuItem("Quit");
+    menuItem = new JMenuItem(exitAction);
+    menuItem.setText("Quit");
     menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ALT + KeyEvent.VK_F4, WindowEvent.WINDOW_CLOSING));
-    menuItem.addActionListener(new QuitListener(this));
     menuItem.getAccessibleContext().setAccessibleDescription("Quit btn");
     menu.add(menuItem);
 
