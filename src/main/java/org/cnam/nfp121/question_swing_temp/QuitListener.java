@@ -11,9 +11,21 @@ import java.awt.event.WindowEvent;
  */
 public class QuitListener implements ActionListener {
 
+    private JFrame frame;
+
     public void actionPerformed(ActionEvent e) {
         Component src = (Component) e.getSource();
-        JFrame frame = (JFrame) SwingUtilities.getRoot(src);
+        if (frame == null){
+            frame = (JFrame) SwingUtilities.getRoot(src);
+        }
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
+    public QuitListener(){
+
+    }
+
+    public  QuitListener(JFrame frame){
+        this.frame = frame;
     }
 }

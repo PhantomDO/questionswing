@@ -5,10 +5,7 @@ import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -22,6 +19,9 @@ public class QuestionWindow extends JFrame{
 
   private JButton quit;
   private JMenuBar menuBar;
+  private JMenu menu;
+  private JMenuItem menuItem;
+
 
   private ButtonReponsePanel reponsePanel;
   public ButtonReponsePanel getReponsePanel() {
@@ -48,9 +48,18 @@ public class QuestionWindow extends JFrame{
     container.add(quit, BorderLayout.WEST);
 
     menuBar = new JMenuBar();
+    menu = new JMenu("File");
+    menu.setMnemonic(KeyEvent.VK_A);
+    menu.getAccessibleContext().setAccessibleDescription("File menu app");
+    menuBar.add(menu);
 
+    menuItem = new JMenuItem("Quit");
+    menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ALT + KeyEvent.VK_F4, WindowEvent.WINDOW_CLOSING));
+    menuItem.addActionListener(new QuitListener(this));
+    menuItem.getAccessibleContext().setAccessibleDescription("Quit btn");
+    menu.add(menuItem);
 
-
+    this.setJMenuBar(menuBar);
     /// Set layout params
     {
       reponsePanel.getControlAnswerPanel().setLayout(new GridBagLayout());
