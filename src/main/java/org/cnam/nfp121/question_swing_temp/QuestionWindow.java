@@ -5,12 +5,13 @@ import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class QuestionWindow extends JFrame{
 
@@ -18,6 +19,9 @@ public class QuestionWindow extends JFrame{
    *
    */
   private static final long serialVersionUID = 1L;
+
+  private JButton quit;
+  private JMenuBar menuBar;
 
   private ButtonReponsePanel reponsePanel;
   public ButtonReponsePanel getReponsePanel() {
@@ -38,6 +42,14 @@ public class QuestionWindow extends JFrame{
 
     reponsePanel = CreateButtonReponsePanel(container);
     container.add(reponsePanel, BorderLayout.SOUTH);
+
+    quit = new JButton("QUIT");
+    quit.addActionListener(new QuitListener());
+    container.add(quit, BorderLayout.WEST);
+
+    menuBar = new JMenuBar();
+
+
 
     /// Set layout params
     {
