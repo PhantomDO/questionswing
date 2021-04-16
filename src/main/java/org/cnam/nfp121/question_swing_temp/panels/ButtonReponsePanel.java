@@ -1,10 +1,10 @@
-package org.cnam.nfp121.question_swing_temp;
+package org.cnam.nfp121.question_swing_temp.panels;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
 public class ButtonReponsePanel extends ReponsePanel {
 
@@ -20,6 +20,12 @@ public class ButtonReponsePanel extends ReponsePanel {
 
   public ButtonReponsePanel(JButton validate) {
     super();
+
+    validate.addActionListener(new AbstractAction() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.printf("Selected Answer : %b%n", isSelectedRight());
+      }
+    });
 
     this.buttonValidatePanel = new JPanel();
     this.buttonValidatePanel.setBackground(Color.YELLOW);
